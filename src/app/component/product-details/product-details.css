@@ -1,0 +1,123 @@
+.overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    overflow-y: auto;
+  }
+  
+  .modal-box {
+    background: #2a1a2e;
+    border: 1px solid #ffb6c1;
+    border-radius: 12px;
+    width: 500px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
+  }
+  
+  .modal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid #ffb6c1;
+    color: #ffb6c1;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    background: #2a1a2e;
+    z-index: 1;
+  }
+  
+  .modal-top button {
+    background: none;
+    border: none;
+    color: #ffb6c1;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .modal-top button:hover {
+    color: #ff9aaa;
+  }
+  
+  .modal-body {
+    padding: 18px;
+    border-bottom: 1px solid #3a1a2e;
+  }
+  
+  .detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #3a1a2e;
+  }
+  
+  .detail:last-child {
+    border-bottom: none;
+  }
+  
+  .detail label {
+    color: #ffb6c1;
+    font-size: 0.85rem;
+  }
+  
+  .detail span {
+    color: #ffe4e8;
+    font-size: 0.85rem;
+    text-align: right;
+    max-width: 55%;
+  }
+  
+  .form-body {
+    padding: 18px;
+  }
+  
+  .form-title {
+    color: #ffb6c1;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  
+  .form-field {
+    margin-bottom: 12px;
+  }
+  
+  .form-field label {
+    color: #ffb6c1;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    display: block;
+  }
+  
+  .btn-save {
+    background: #ffb6c1;
+    color: #2a1a2e;
+    border: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 8px;
+  }
+  
+  .btn-save:hover {
+    background: #ff9aaa;
+    color: #2a1a2e;
+  }
+  
+  .alert-success-box {
+    background: #1a3a1a;
+    border: 1px solid #4caf50;
+    color: #a5d6a7;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    text-align: center;
+  }

@@ -1,0 +1,30 @@
+<div class="container py-4">
+    <h4 class="mb-3">Product List</h4>
+  
+    <table class="table table-dark table-hover align-middle">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of products; track product.id) {
+          <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.status }}</td>
+            <td>
+              <a [routerLink]="['/plist', product.id, 'details']" class="btn-view">View</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="container mt-4">
+    <router-outlet></router-outlet>
+  </div>

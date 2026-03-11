@@ -1,5 +1,5 @@
 <div class="container py-4">
-  <h4 class="mb-3">Product List</h4>
+  <h4 class="mb-3 text-white">Product List</h4>
 
   <table class="table table-dark table-hover align-middle">
     <thead>
@@ -17,9 +17,7 @@
           <td>{{ product.name }}</td>
           <td>{{ product.status }}</td>
           <td>
-            <button class="btn btn-info btn-sm" (click)="viewProduct(product)">
-              View
-            </button>
+            <a [routerLink]="['/products', product.id, 'details']" class="btn-view">View</a>
           </td>
         </tr>
       }
@@ -27,30 +25,75 @@
   </table>
 </div>
 
-@if (showModal) {
-  <div class="overlay" (click)="closeModal()">
-    <div class="modal-box" (click)="$event.stopPropagation()">
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>
 
-      <div class="modal-top">
-        <span>Product Details</span>
-        <button (click)="closeModal()">✕</button>
-      </div>
-
-      @if (selectedProduct) {
-        <div class="modal-body">
-          <div class="detail"><label>ID</label><span>{{ selectedProduct.id }}</span></div>
-          <div class="detail"><label>Name</label><span>{{ selectedProduct.name }}</span></div>
-          <div class="detail"><label>Brand</label><span>{{ selectedProduct.brand }}</span></div>
-          <div class="detail"><label>Category</label><span>{{ selectedProduct.category }}</span></div>
-          <div class="detail"><label>Price</label><span>₱{{ selectedProduct.price }} / kg</span></div>
-          <div class="detail"><label>Stock</label><span>{{ selectedProduct.stock }}</span></div>
-          <div class="detail"><label>Status</label><span>{{ selectedProduct.status }}</span></div>
-          <div class="detail"><label>Rating</label><span>{{ selectedProduct.rating }} / 5</span></div>
-          <div class="detail"><label>Discount</label><span>{{ selectedProduct.discount }}%</span></div>
-          <div class="detail"><label>Description</label><span>{{ selectedProduct.description }}</span></div>
-        </div>
-      }
-
+<!-- GET PRODUCT BY ID -->
+<div class="container py-4">
+  <h6 class="section-label">Get Product By ID</h6>
+  <div class="section-box">
+    <div class="input-group mb-3">
+      <input type="number" class="form-control bg-dark text-white border-secondary" [(ngModel)]="searchId" placeholder="Enter product ID" />
+      <button class="btn btn-search" (click)="searchProduct()">Search</button>
     </div>
+
+    @if (foundProduct) {
+      <div class="found-card">
+        <div class="row text-white-50 small">
+          <div class="col-md-6">
+            <div>ID: <span class="text-white">{{ foundProduct.id }}</span></div>
+            <div>Category: <span class="text-white">{{ foundProduct.category }}</span></div>
+            <div>Stock: <span class="text-white">{{ foundProduct.stock }}</span></div>
+          </div>
+          <div class="col-md-6">
+            <div>Name: <span class="text-white">{{ foundProduct.name }}</span></div>
+            <div>Price: <span class="text-white">₱{{ foundProduct.price }}</span></div>
+            <div>Status: <span class="text-white">{{ foundProduct.status }}</span></div>
+          </div>
+        </div>
+      </div>
+    }
   </div>
-}
+</div>
+
+<!-- UPDATE PRODUCT -->
+<div class="container py-4">
+  <h6 class="section-label">Update Product</h6>
+  <div class="section-box">
+    <p class="text-white-50 small">Search a product by ID above first, then edit and save below.</p>
+
+    @if (editProduct) {
+      <div class="mb-2 text-white-50 small">Name</div>
+      <input class="form-control bg-dark text-white border-secondary mb-2" [(ngModel)]="editProduct.name" />
+
+      <div class="mb-2 text-white-50 small">Category</div>
+      <input class="form-control bg-dark text-white border-secondary mb-2" [(ngModel)]="editProduct.category" />
+
+      <div class="mb-2 text-white-50 small">Price</div>
+      <input class="form-control bg-dark text-white border-secondary mb-2" type="number" [(ngModel)]="editProduct.price" />
+
+      <div class="mb-2 text-white-50 small">Stock</div>
+      <input class="form-control bg-dark text-white border-secondary mb-2" type="number" [(ngModel)]="editProduct.stock" />
+
+      <div class="mb-2 text-white-50 small">Status</div>
+      <input class="form-control bg-dark text-white border-secondary mb-3" [(ngModel)]="editProduct.status" />
+    }
+
+    <button class="btn btn-update w-100" (click)="saveUpdate()">Update Product</button>
+
+    @if (updateSuccess) {
+      <div class="alert alert-success mt-2 py-1 small">Product updated successfully!</div>
+    }
+  </div>
+</div>
+
+<!-- SESSION AUTH -->
+<div class="container py-4">
+  <h6 class="section-label">Session Auth</h6>
+  <div class="section-box">
+    <button class="btn btn-login me-2" (click)="login()">Login</button>
+    <button class="btn btn-logout" (click)="logout()">Logout</button>
+    <div class="mt-2 text-white-50 small">Logged in: <span class="text-white">{{ isLoggedIn }}</span></div>
+  </div>
+</div>

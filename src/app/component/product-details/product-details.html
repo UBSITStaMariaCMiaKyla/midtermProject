@@ -1,0 +1,77 @@
+@if (product) {
+    <div class="overlay" (click)="goBack()">
+      <div class="modal-box" (click)="$event.stopPropagation()">
+  
+        <div class="modal-top">
+          <span>Product Details</span>
+          <button (click)="goBack()">✕</button>
+        </div>
+  
+        <div class="modal-body">
+          <div class="detail"><label>ID: </label><span>{{ product.id }}</span></div>
+          <div class="detail"><label>Name: </label><span>{{ product.name }}</span></div>
+          <div class="detail"><label>Brand: </label><span>{{ product.brand }}</span></div>
+          <div class="detail"><label>Category: </label><span>{{ product.category }}</span></div>
+          <div class="detail"><label>Price: </label><span>₱{{ product.price }} / kg</span></div>
+          <div class="detail"><label>Stock: </label><span>{{ product.stock }}</span></div>
+          <div class="detail"><label>Status: </label><span>{{ product.status }}</span></div>
+          <div class="detail"><label>Rating: </label><span>{{ product.rating }} / 5</span></div>
+          <div class="detail"><label>Discount: </label><span>{{ product.discount }}%</span></div>
+          <div class="detail"><label>Description: </label><span>{{ product.description }}</span></div>
+        </div>
+  
+        @if (editProduct) {
+          <div class="form-body">
+            <h6 class="form-title">Edit Product</h6>
+  
+            <div class="form-field">
+              <label>Name</label>
+              <input class="form-control bg-dark text-white border-secondary" [(ngModel)]="editProduct.name" />
+            </div>
+  
+            <div class="form-field">
+              <label>Brand</label>
+              <input class="form-control bg-dark text-white border-secondary" [(ngModel)]="editProduct.brand" />
+            </div>
+  
+            <div class="form-field">
+              <label>Category</label>
+              <input class="form-control bg-dark text-white border-secondary" [(ngModel)]="editProduct.category" />
+            </div>
+  
+            <div class="form-field">
+              <label>Price</label>
+              <input class="form-control bg-dark text-white border-secondary" type="number" [(ngModel)]="editProduct.price" />
+            </div>
+  
+            <div class="form-field">
+              <label>Stock</label>
+              <input class="form-control bg-dark text-white border-secondary" type="number" [(ngModel)]="editProduct.stock" />
+            </div>
+  
+            <div class="form-field">
+              <label>Status</label>
+              <input class="form-control bg-dark text-white border-secondary" [(ngModel)]="editProduct.status" />
+            </div>
+  
+            <div class="form-field">
+              <label>Discount (%)</label>
+              <input class="form-control bg-dark text-white border-secondary" type="number" [(ngModel)]="editProduct.discount" />
+            </div>
+  
+            <div class="form-field">
+              <label>Description</label>
+              <textarea class="form-control bg-dark text-white border-secondary" rows="3" [(ngModel)]="editProduct.description"></textarea>
+            </div>
+  
+            <button class="btn btn-save w-100 mt-2" (click)="saveUpdate()">Save Changes</button>
+  
+            @if (updateSuccess) {
+              <div class="alert-success-box mt-2">✅ Product updated successfully!</div>
+            }
+          </div>
+        }
+  
+      </div>
+    </div>
+  }
