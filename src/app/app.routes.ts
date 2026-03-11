@@ -9,6 +9,8 @@ import { Event } from './databinding/event/event';
 import { TwoWay } from './databinding/two-way/two-way';
 
 import { Products } from './products/products';
+import { ProductsListComponent } from './component/products-list/products-list';
+import { ProductDetails } from './component/product-details/product-details';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,7 +23,20 @@ export const routes: Routes = [
   { path: 'databinding/event', component: Event },
   { path: 'databinding/two-way', component: TwoWay },
 
-  { path: 'products', component: Products },
+  {
+    path: 'products',
+    component: Products,
+    children: [
+      { path: ':id/details', component: ProductDetails }
+    ]
+  },
+  {
+    path: 'plist',
+    component: ProductsListComponent,
+    children: [
+      { path: ':id/details', component: ProductDetails }
+    ]
+  },
 
   { path: '**', redirectTo: 'home' },
 ];
