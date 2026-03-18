@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Supplier } from '../models/supplier.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+// Makes this service available throughout the whole application
+@Injectable({ providedIn: 'root' })
 export class SupplierService {
 
-  //List of 10 suppliers
-  private suppliers: Supplier[] = [
+  // Mock data stored as a signal array
+  private suppliers = signal<Supplier[]>([
     { id: 1, supplierName: 'Altea Rai Inong', location: 'La Trinidad, Benguet', email: 'alteaing@freshfarms.ph', contactPerson: 'Altea Rai Inong', phone: '09171234501', productsSupplied: ['Strawberry'], category: 'Fruit Supplier', isActive: true },
     { id: 2, supplierName: 'Lm Cabatic', location: 'Cebu City, Cebu', email: 'lmcabatic@mangotraders.ph', contactPerson: 'Lm Cabatic', phone: '09281234502', productsSupplied: ['Mangga (Mango)'], category: 'Fruit Supplier', isActive: true },
     { id: 3, supplierName: 'Aj Manalo', location: 'Lucena City, Quezon', email: 'ajmanalo@tropicalfruits.ph', contactPerson: 'Aj Manalo', phone: '09391234503', productsSupplied: ['Lansones'], category: 'Fruit Distributor', isActive: false },
@@ -18,24 +17,34 @@ export class SupplierService {
     { id: 8, supplierName: 'Taylor Swift', location: 'Trece Martires, Cavite', email: 'taylorswift@freshgrowers.ph', contactPerson: 'Taylor Swift', phone: '09891234508', productsSupplied: ['Bayabas (Guava)', 'Atis (Sugar Apple)'], category: 'Fruit Supplier', isActive: true },
     { id: 9, supplierName: 'Beatrice Laus', location: 'Iloilo City, Iloilo', email: 'beatricelaus@tropicaltrading.ph', contactPerson: 'Beatrice Laus', phone: '09921234509', productsSupplied: ['Atis (Sugar Apple)', 'Santol'], category: 'Fruit Distributor', isActive: true },
     { id: 10, supplierName: 'Dagul', location: 'Santa Cruz, Laguna', email: 'dagul@jackfruitfarms.ph', contactPerson: 'Dagul', phone: '09031234510', productsSupplied: ['Langka (Jackfruit)', 'Marang'], category: 'Fruit Supplier', isActive: true },
-  ];
-
+  ]);
 
   // Returns the full list of suppliers
   getSuppliers(): Supplier[] {
-    return this.suppliers;
+    return this.suppliers();
   }
 
   // Finds and returns one supplier using their ID
   getSupplierById(id: number): Supplier | undefined {
-    return this.suppliers.find(s => s.id === id);
+    return this.suppliers().find(s => s.id === id);
+  }
+
+  // Searches suppliers by name
+  search(query: string): Supplier[] {
+    return this.suppliers().filter(s =>
+      s.supplierName.toLowerCase().includes(query.toLowerCase())
+    );
   }
 
   // Updates an existing supplier's data in the list
   updateSupplier(updatedSupplier: Supplier): void {
-    const index = this.suppliers.findIndex(s => s.id === updatedSupplier.id);
-    if (index !== -1) {
-      this.suppliers[index] = { ...updatedSupplier };
-    }
+    this.suppliers.update(list =>
+      list.map(s => s.id === updatedSupplier.id ? updatedSupplier : s)
+    );
+  }
+
+  // Removes a supplier from the list by ID
+  deleteSupplier(id: number): void {
+    this.suppliers.update(list => list.filter(s => s.id !== id));
   }
 }

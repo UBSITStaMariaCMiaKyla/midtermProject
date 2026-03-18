@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,29 +13,33 @@ import { SupplierService } from '../../services/supplier';
   styleUrls: ['./supplier-details.css']
 })
 export class SupplierDetailsComponent implements OnInit {
-  supplier: Supplier | undefined;
-  supplierId: number = 0;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private supplierService: SupplierService
-  ) {}
+  // Injects route, router, and supplier service
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private supplierService = inject(SupplierService);
 
+  // Holds the currently selected supplier's data
+  supplier = signal<Supplier | undefined>(undefined);
+
+  // Gets the supplier ID from the URL and loads the matching supplier
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.supplierId = +params['id'];
-      this.supplier = this.supplierService.getSupplierById(this.supplierId);
+      const id = +params['id'];
+      this.supplier.set(this.supplierService.getSupplierById(id));
     });
   }
 
-  saveChanges(): void {
-    if (this.supplier) {
-      this.supplierService.updateSupplier(this.supplier);
+  // Saves the edited supplier data back to the service
+  onSave(): void {
+    const current = this.supplier();
+    if (current) {
+      this.supplierService.updateSupplier(current);
       alert('Supplier updated successfully!');
     }
   }
 
+  // Goes back to the suppliers list page
   goBack(): void {
     this.router.navigate(['/suppliers']);
   }

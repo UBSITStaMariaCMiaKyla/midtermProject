@@ -7,7 +7,7 @@ import { Product } from "../models/product.interface";
 
 export class ProductService {
 
-private products: Product[] = [
+  private products: Product[] = [
     { id: 1, name: 'Strawberry', category: 'Imported Fruit', price: 320.00, stock: 50, status: 'Available', description: 'Sweet and slightly tart berries from Baguio City, sold per kilo.', brand: 'Baguio Fresh', rating: 4.8, discount: 0 },
     { id: 2, name: 'Mangga (Mango)', category: 'Native Fruit', price: 120.00, stock: 120, status: 'Available', description: 'Sweet Philippine carabao mango per kilo, one of the best in the world.', brand: 'Cebu Farms', rating: 4.9, discount: 5 },
     { id: 3, name: 'Lansones', category: 'Native Fruit', price: 90.00, stock: 0, status: 'Out of Stock', description: 'Sweet fruit from Camiguin sold per kilo, usually eaten in clusters.', brand: 'Camiguin Harvest', rating: 4.5, discount: 0 },
@@ -33,10 +33,15 @@ private products: Product[] = [
     if (idx !== -1) this.products[idx] = { ...updated };
   }
 
+  // Removes a product from the list by ID
+  deleteProduct(id: number): void {
+    this.products = this.products.filter(p => p.id !== id);
+  }
+
   isAuthenticated(): boolean {
     return !!sessionStorage.getItem('auth-token');
   }
 
-  login(): void { sessionStorage.setItem('auth_token', 'demo-token');}
-  logout(): void { sessionStorage.removeItem('auth_token');}
+  login(): void { sessionStorage.setItem('auth_token', 'demo-token'); }
+  logout(): void { sessionStorage.removeItem('auth_token'); }
 }

@@ -144,3 +144,128 @@
   text-align: right;
   max-width: 55%;
 }
+
+.action-btns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* View button - pink to match products theme */
+.btn-view {
+  background: transparent;
+  color: #f48fb1;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.18s;
+}
+
+.btn-view:hover {
+  color: #ffffff;
+  background: rgba(244, 143, 177, 0.10);
+}
+
+.btn-delete {
+  background: transparent;
+  color: #e8758a;
+  border: 1px solid rgba(232, 117, 138, 0.25);
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: all 0.18s;
+}
+
+.btn-delete:hover {
+  background: rgba(232, 117, 138, 0.15);
+  border-color: rgba(232, 117, 138, 0.55);
+  box-shadow: 0 0 10px rgba(232, 117, 138, 0.20);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+/* Modal box - override for delete modal */
+.modal-overlay .modal-box {
+  background: #1a0a1e;
+  border: 1px solid rgba(244, 143, 177, 0.30);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  min-width: 340px;
+  width: auto;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+.modal-overlay .modal-box h3 {
+  color: #f48fb1;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  border-left: 3px solid #f48fb1;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.modal-overlay .modal-box p {
+  color: #fce4ec;
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.btn-confirm-delete {
+  background: rgba(244, 143, 177, 0.15);
+  color: #f48fb1;
+  border: 1px solid rgba(244, 143, 177, 0.40);
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.18s;
+}
+
+.btn-confirm-delete:hover {
+  background: rgba(244, 143, 177, 0.28);
+  border-color: rgba(244, 143, 177, 0.65);
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #fce4ec;
+  border: 1px solid rgba(244, 143, 177, 0.25);
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.18s;
+}
+
+.btn-cancel:hover {
+  color: #f48fb1;
+  border-color: rgba(244, 143, 177, 0.55);
+  background: rgba(244, 143, 177, 0.08);
+}
