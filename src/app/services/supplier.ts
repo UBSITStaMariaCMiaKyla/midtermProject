@@ -6,6 +6,7 @@ import { Supplier } from '../models/supplier.interface';
 })
 export class SupplierService {
 
+  //List of 10 suppliers
   private suppliers: Supplier[] = [
     { id: 1, supplierName: 'Altea Rai Inong', location: 'La Trinidad, Benguet', email: 'alteaing@freshfarms.ph', contactPerson: 'Altea Rai Inong', phone: '09171234501', productsSupplied: ['Strawberry'], category: 'Fruit Supplier', isActive: true },
     { id: 2, supplierName: 'Lm Cabatic', location: 'Cebu City, Cebu', email: 'lmcabatic@mangotraders.ph', contactPerson: 'Lm Cabatic', phone: '09281234502', productsSupplied: ['Mangga (Mango)'], category: 'Fruit Supplier', isActive: true },
