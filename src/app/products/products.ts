@@ -61,7 +61,7 @@ export class Products {
     this.showModal.set(false);
     this.productToDelete.set(null);
   }
-
+//
   // Cancels the deletion and closes the modal
   cancelDelete(): void {
     this.showModal.set(false);
