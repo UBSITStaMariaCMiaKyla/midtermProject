@@ -1,0 +1,100 @@
+.container {
+    padding: 2rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    color: #ddeaf6;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+    border-left: 4px solid #e8758a;
+    padding-left: 14px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #111d2e;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(232, 117, 138, 0.25);
+    border: 1px solid rgba(232, 117, 138, 0.20);
+  }
+  
+  thead {
+    background: #162338;
+  }
+  
+  th {
+    color: #e8758a;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(232, 117, 138, 0.30);
+  }
+  
+  td {
+    padding: 13px 20px;
+    color: #c8dff0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(100, 155, 195, 0.08);
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+  
+  tr:hover td {
+    background: rgba(232, 117, 138, 0.07);
+    color: #ddeaf6;
+  }
+  
+  /* Pink left border on row hover */
+  tr:hover td:first-child {
+    border-left: 3px solid #e8758a;
+  }
+  
+  td:first-child {
+    border-left: 3px solid transparent;
+    transition: border-color 0.18s;
+  }
+  
+  /* ID column pink tint */
+  td:first-child {
+    color: #e8758a;
+    font-weight: 600;
+  }
+  
+  .btn-view {
+    background: rgba(232, 117, 138, 0.10);
+    color: #f0a0b0;
+    border: 1px solid rgba(232, 117, 138, 0.25);
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.18s;
+  }
+  
+  .btn-view:hover {
+    background: rgba(232, 117, 138, 0.22);
+    color: #f8c0cc;
+    border-color: rgba(232, 117, 138, 0.55);
+    box-shadow: 0 0 10px rgba(232, 117, 138, 0.20);
+  }
+  
+  /* Pink glow line at top of table */
+  table::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, #e8758a, rgba(232, 117, 138, 0.2));
+    border-radius: 12px 12px 0 0;
+  } 

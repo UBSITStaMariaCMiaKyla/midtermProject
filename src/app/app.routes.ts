@@ -12,6 +12,9 @@ import { Products } from './products/products';
 import { ProductsListComponent } from './component/products-list/products-list';
 import { ProductDetails } from './component/product-details/product-details';
 
+import { SuppliersListComponent } from './component/suppliers-list/suppliers-list';
+import { SupplierDetailsComponent } from './component/supplier-details/supplier-details';
+
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
@@ -37,6 +40,9 @@ export const routes: Routes = [
       { path: ':id/details', component: ProductDetails }
     ]
   },
+
+  { path: 'suppliers', component: SuppliersListComponent },
+  { path: 'suppliers/:id', component: SupplierDetailsComponent },
 
   { path: '**', redirectTo: 'home' },
 ];

@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Suppliers Management</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Supplier Name</th>
+          <th>Contact Person</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let supplier of suppliers">
+          <td>{{ supplier.id }}</td>
+          <td>{{ supplier.supplierName }}</td>
+          <td>{{ supplier.contactPerson }}</td>
+          <td>
+            <button class="btn-view" (click)="viewSupplierDetails(supplier.id)">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
